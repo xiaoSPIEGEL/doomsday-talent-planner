@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doomsday Talent Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Doomsday Talent Planner</h1>
+        <div class="controls">
+            <label for="total-points-input">Total Points:</label>
+            <input type="number" id="total-points-input" value="74" min="0" max="74">
+            <button id="btn-reset" onclick="resetAllPoints()">Reset Points</button>
+            <div class="points-counter">Remaining: <span id="points-left">74</span></div>
+        </div>
+    </header>
+    <div class="main-container">
+        <main class="board-wrapper">
+            <svg id="board" viewBox="-640 -600 1280 640"></svg>
+        </main>
+        <aside class="status-panel">
+            <h2>Active Buffs</h2>
+            <div id="stats-list">
+                <p class="no-buffs">No active buffs yet.</p>
+            </div>
+        </aside>
+    </div>
+    <div id="popup-window" class="popup hidden">
+        <div class="popup-header">
+            <span id="popup-title">Talent Name</span>
+            <span id="popup-level">0/0</span>
+        </div>
+        <div class="popup-body">
+            <p><strong>♦ Buff Effects</strong></p>
+            <p id="popup-current-effect">No active effect.</p>
+            <p id="popup-next-effect" style="color: #888;">Next: ...</p>
+        </div>
+        <div class="popup-footer">
+            <button id="btn-level-up" onclick="tryLevelUp()">LEVEL UP</button>
+        </div>
+    </div>
+    <div id="confirm-popup" class="popup hidden" style="width: 320px;">
+        <div class="popup-header" style="background-color: #888;">
+            <span id="confirm-title">Talent Name</span>
+            <span id="confirm-level">0/0</span>
+        </div>
+        <div class="popup-body">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Talent Points Required:</span>
+                <strong id="confirm-cost" style="color: #8b0000; font-size: 16px;">0</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Current Talent Points:</span>
+                <strong id="confirm-current-points" style="color: green; font-size: 16px;">0</strong>
+            </div>
+            <p style="text-align: center; color: #d4af37; font-weight: bold; margin-top: 15px;">⚠️ Upgrade this Talent?</p>
+        </div>
+        <div class="popup-footer" style="display: flex; gap: 10px;">
+            <button onclick="closeConfirm()" style="background-color: #555; color: white; flex: 1; padding: 10px; border: none; border-radius: 3px; font-weight: bold; cursor: pointer;">NO</button>
+            <button onclick="confirmAutoBuy()" style="background-color: #d4af37; color: #333; flex: 1; padding: 10px; border: none; border-radius: 3px; font-weight: bold; cursor: pointer;">YES</button>
+        </div>
+    </div>
+    <div id="edit-bar" class="hidden"></div>
+    <script>const TREES = {}, HEROES = {};</script>
+    <script src="data/skills.js"></script>
+    <script src="data/ranged.js"></script>
+    <script src="data/heroes.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
